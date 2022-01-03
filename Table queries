@@ -1,0 +1,10 @@
+CREATE TABLE `tbl_mstbillertype` (
+  `SId` int NOT NULL,
+  `BillerType` varchar(45) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT NULL,
+  PRIMARY KEY (`SId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
