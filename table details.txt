@@ -1,0 +1,213 @@
+CREATE TABLE `tbl_BillerAuthenticators` (
+  `BAId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `parameter_name` varchar(100) DEFAULT NULL,
+  `data_type` varchar(20) DEFAULT NULL,
+  `optional` char(1) DEFAULT NULL,
+  `regex` varchar(100) DEFAULT NULL,
+  `error_message` varchar(100) DEFAULT NULL,
+  `seq` varchar(5) DEFAULT NULL,
+  `encryption_required` char(1) DEFAULT NULL,
+  `user_input` char(1) DEFAULT NULL,
+  `list_of_values` varchar(500) DEFAULT NULL,
+  `billerid` varchar(20) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`BAId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+************************************************************
+CREATE TABLE `tbl_MSTBiller` (
+  `BId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `objectid` varchar(20) DEFAULT NULL,
+  `billerid` varchar(20) DEFAULT NULL,
+  `biller_legal_name` varchar(50) DEFAULT NULL,
+  `biller_name` varchar(50) DEFAULT NULL,
+  `biller_location` varchar(50) DEFAULT NULL,
+  `biller_category` varchar(50) DEFAULT NULL,
+  `biller_reg_address` varchar(100) DEFAULT NULL,
+  `biller_reg_city` varchar(50) DEFAULT NULL,
+  `biller_reg_pin` varchar(10) DEFAULT NULL,
+  `biller_reg_state` varchar(50) DEFAULT NULL,
+  `biller_reg_country` varchar(50) DEFAULT NULL,
+  `biller_mode` varchar(50) DEFAULT NULL,
+  `biller_status` varchar(20) DEFAULT NULL,
+  `biller_created_date` datetime DEFAULT NULL,
+  `biller_lastmodified_date` datetime DEFAULT NULL,
+  `biller_logo` varchar(100) DEFAULT NULL,
+  `biller_bill_copy` varchar(100) DEFAULT NULL,
+  `biller_type` varchar(50) DEFAULT NULL,
+  `partial_pay` char(1) DEFAULT NULL,
+  `pay_after_duedate` char(1) DEFAULT NULL,
+  `online_validation` char(1) DEFAULT NULL,
+  `isbillerbbps` char(1) DEFAULT NULL,
+  `paymentamount_validation` char(1) DEFAULT NULL,
+  `bill_presenment` char(1) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`BId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+**********************************************************
+
+CREATE TABLE `tbl_MSTBillerCategory` (
+  `CId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `BillerCategory` varchar(100) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`CId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+**********************************************************
+CREATE TABLE `tbl_MSTBillerType` (
+  `TId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `BillerType` varchar(100) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`TId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+********************************************
+CREATE TABLE `tbl_MSTMDMFile` (
+  `Id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `FileName` varchar(100) DEFAULT NULL,
+  `FileDate` datetime DEFAULT NULL,
+  `MDMIteration` int(11) DEFAULT NULL,
+  `FileLocation` varchar(100) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+***************************************************
+
+CREATE TABLE `tbl_MSTMenu` (
+  `MId` int(11) NOT NULL AUTO_INCREMENT,
+  `Menu` varchar(100) DEFAULT NULL,
+  `Pid` int(11) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`MId`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+***********************************************************
+CREATE TABLE `tbl_MSTMerchant` (
+  `PayId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `MerchantName` varchar(200) DEFAULT NULL,
+  `MID` varchar(20) DEFAULT NULL,
+  `APIKey` varchar(20) DEFAULT NULL,
+  `ContactPerson` varchar(100) DEFAULT NULL,
+  `EmailId` varchar(100) DEFAULT NULL,
+  `State` int(11) DEFAULT NULL,
+  `GSTNo` varchar(100) DEFAULT NULL,
+  `PANNo` varchar(100) DEFAULT NULL,
+  `Address` varchar(200) DEFAULT NULL,
+  `PIN` varchar(10) DEFAULT NULL,
+  `BBPSKey` varchar(20) DEFAULT NULL,
+  `Status` char(1) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`PayId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+*********************************************
+CREATE TABLE `tbl_MSTPaymentChannel` (
+  `PCId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `payment_channel` varchar(100) DEFAULT NULL,
+  `min_limit` decimal(12,2) DEFAULT NULL,
+  `max_limit` decimal(12,2) DEFAULT NULL,
+  `billerid` varchar(20) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`PCId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+***************************************************
+CREATE TABLE `tbl_MSTPaymentMethod` (
+  `PId` bigint(20) NOT NULL AUTO_INCREMENT,
+  `payment_method` varchar(100) DEFAULT NULL,
+  `min_limit` decimal(12,2) DEFAULT NULL,
+  `max_limit` decimal(12,2) DEFAULT NULL,
+  `autopay_allowed` char(1) DEFAULT NULL,
+  `paylater_allowed` char(1) DEFAULT NULL,
+  `billerid` varchar(20) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`PId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+**********************************************************
+CREATE TABLE `tbl_MSTRole` (
+  `RId` int(11) NOT NULL AUTO_INCREMENT,
+  `Role` varchar(100) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`RId`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+************************************************************
+CREATE TABLE `tbl_MSTRoleMenuMap` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `RoleId` int(11) DEFAULT NULL,
+  `MenuId` int(11) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+***************************************************************
+CREATE TABLE `tbl_MSTUser` (
+  `UId` int(11) NOT NULL AUTO_INCREMENT,
+  `RoleId` int(11) DEFAULT NULL,
+  `MId` int(11) DEFAULT NULL,
+  `FirstName` varchar(100) DEFAULT NULL,
+  `LastName` varchar(100) DEFAULT NULL,
+  `EmailId` varchar(100) DEFAULT NULL,
+  `MobileNo` varchar(20) DEFAULT NULL,
+  `ManagerId` bigint(20) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N',
+  PRIMARY KEY (`UId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+**************************************************
+CREATE TABLE `tbl_UserLogin` (
+  `UId` int(11) NOT NULL,
+  `MID` int(11) DEFAULT NULL,
+  `UserName` varchar(100) DEFAULT NULL,
+  `Password` varchar(100) DEFAULT NULL,
+  `LastLogin` datetime DEFAULT NULL,
+  `LastLoginIp` varchar(100) DEFAULT NULL,
+  `OldPassword` varchar(100) DEFAULT NULL,
+  `NoOfAttempt` int(11) DEFAULT NULL,
+  `CreatedOn` datetime DEFAULT NULL,
+  `CreatedBy` int(11) DEFAULT NULL,
+  `ModifiedOn` datetime DEFAULT NULL,
+  `ModifiedBy` int(11) DEFAULT NULL,
+  `IsDeleted` char(1) DEFAULT 'N'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+*************************************************
